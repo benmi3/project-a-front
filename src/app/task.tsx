@@ -7,7 +7,7 @@ export default function Task() {
   const [task, setTask] = useState('');
 
   useEffect(() => {
-    invoke<string>('task', { name: 'Next.js' })
+    invoke<string>('task', { name: 'Task - Title ' })
       .then(result => setTask(result))
       .catch(console.error)
   }, [])
