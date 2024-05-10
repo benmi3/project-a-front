@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { invoke } from '@tauri-apps/api/tauri'
-defineProps<{ msg: string }>()
+defineProps<{ msg: string, taskId: number, taskTitle: string, taskProgress: number }>()
 
 const taskTitle = ref(0)
 async function backendTask() {
