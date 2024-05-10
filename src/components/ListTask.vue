@@ -15,7 +15,7 @@ onMount()
     <h1>{{ msg }}</h1>
 
     <li v-for="(task) in taskList">
-       <SingleTask msg="Hello Tauri + Vue!", task=task />
+       <SingleTask msg="Hello Tauri + Vue!", taskId=task.id, taskTitle=task.title, taskProgress=task.Progress />
     </li>
   </div>
 </template>
