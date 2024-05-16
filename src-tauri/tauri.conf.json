@@ -1,19 +1,27 @@
 {
-  "package": {
-    "productName": "Tauri Vue Project A Frontend",
-    "version": "0.4.0"
-  },
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "distDir": "../dist",
+    "beforeBuildCommand": "npm run build",
+    "beforeDevCommand": "npm run dev",
     "devPath": "http://localhost:1420",
-    "beforeDevCommand": "pnpm vite:dev",
-    "beforeBuildCommand": "pnpm vite:build"
+    "distDir": "../dist"
+  },
+  "package": {
+    "productName": "my-frontend",
+    "version": "0.1.0"
   },
   "tauri": {
+    "allowlist": {
+      "all": false
+    },
     "bundle": {
       "active": true,
-      "targets": "all",
-      "identifier": "net.uninen.dev",
+      "category": "DeveloperTool",
+      "copyright": "",
+      "deb": {
+        "depends": []
+      },
+      "externalBin": [],
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -21,45 +29,38 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "resources": [],
-      "externalBin": [],
-      "copyright": "",
-      "category": "DeveloperTool",
-      "shortDescription": "",
+      "identifier": "com.tauri.dev",
       "longDescription": "",
-      "deb": {
-        "depends": []
-      },
       "macOS": {
-        "frameworks": [],
+        "entitlements": null,
         "exceptionDomain": "",
-        "signingIdentity": null,
+        "frameworks": [],
         "providerShortName": null,
-        "entitlements": null
+        "signingIdentity": null
       },
+      "resources": [],
+      "shortDescription": "",
+      "targets": "all",
       "windows": {
         "certificateThumbprint": null,
         "digestAlgorithm": "sha256",
         "timestampUrl": ""
       }
     },
+    "security": {
+      "csp": null
+    },
     "updater": {
       "active": false
     },
-    "allowlist": {
-      "all": true
-    },
     "windows": [
       {
-        "title": "Tauri Vue Project A Frontend",
-        "width": 800,
+        "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "fullscreen": false
+        "title": "my-frontend",
+        "width": 800
       }
-    ],
-    "security": {
-      "csp": null
-    }
+    ]
   }
 }

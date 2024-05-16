@@ -1,11 +1,18 @@
-import { devtools } from '@vue/devtools'
+//import './assets/main.css'
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+
+
+
 import App from './App.vue'
 
-import './assets/main.postcss'
+import './index.css'
 
-if (process.env.NODE_ENV === 'development') {
-  devtools.connect('http://localhost', 8098)
-}
+import router from './router'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+
+app.use(createPinia())
+app.use(router)
+
+app.mount('#app')

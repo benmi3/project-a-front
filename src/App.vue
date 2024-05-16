@@ -1,16 +1,77 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <div class="flex flex-col p-2">
-    <div class="flex flex-row items-center justify-center">
-      <img src="/tauri.svg" class="w-20 h-20 logo tauri" alt="Tauri logo" />
-      <img src="/vue.svg" class="w-20 h-20 logo vue" alt="Vue logo" />
-    </div>
+  <div class="bg-slate-800">
+  <header class="bg-slate-900 ring-slate-900/5 shadow-xl">
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
-    <HelloWorld msg="Hello Tauri + Vue!" />
+    <div class="text-white">
+      <HelloWorld msg="You did it!" />
+
+      <nav class="text-slate-100">
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
+      </nav>
+    </div>
+  </header>
+    <RouterView />
   </div>
 </template>
+
+<style scoped>
+header {
+  line-height: 1.5;
+  max-height: 100vh;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+}
+
+nav {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+nav a {
+  display: inline-block;
+  padding: 0 1rem
+}
+
+nav a:first-of-type {
+  border: 0;
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  nav {
+    text-align: left;
+    margin-left: -1rem;
+    font-size: 1rem;
+
+    padding: 1rem 0;
+    margin-top: 1rem;
+  }
+}
+</style>

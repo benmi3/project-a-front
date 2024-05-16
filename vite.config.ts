@@ -1,38 +1,36 @@
-import vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
-import AutoImport from 'unplugin-auto-import/vite'
-import { defineConfig } from 'vitest/config'
+import { fileURLToPath, URL } from 'node:url'
 
-// See https://vitejs.dev/config/
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-    // See https://github.com/unplugin/unplugin-auto-import
-    AutoImport({
-      imports: ['vue'],
-      dts: './src/auto-imports.d.ts',
-      eslintrc: {
-        enabled: true,
-        filepath: resolve(__dirname, '.eslintrc-auto-import.json'),
-      },
-    }),
   ],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
+  envPrefix: ['VITE_', 'TAURI_PLATFORM', 'TAURI_ARCH', 'TAURI_FAMILY', 'TAURI_PLATFORM_VERSION', 'TAURI_PLATFORM_TYPE', 'TAURI_DEBUG'],
+  build: {
+    // Tauri uses Chromium on Windows and WebKit on macOS and Linux
+    target: process.env.TAURI_PLATFORM == 'windows' ? 'chrome105' : 'safari13',
+    // don't minify for debug builds
+    minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
+    // produce sourcemaps for debug builds
+    sourcemap: !!process.env.TAURI_DEBUG,
+  },
+  // prevent vite from obscuring rust errors
   clearScreen: false,
-  envPrefix: ['VITE_', 'TAURI_'],
+  // Tauri expects a fixed port, fail if that port is not available
   server: {
     port: 1420,
     strictPort: true,
-  },
-  build: {
-    outDir: './dist',
-    // See https://tauri.app/v1/references/webview-versions for details
-    target: process.env.TAURI_PLATFORM == 'windows' ? 'chrome105' : 'safari15',
-    minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
-    sourcemap: !!process.env.TAURI_DEBUG,
-    emptyOutDir: true,
-  },
-  // See https://vitest.dev/config/
-  test: {
-    include: ['tests/unit/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    watch: {
+      // 3. tell vite to ignore watching `src-tauri`
+      ignored: ["**/src-tauri/**"],
+    }
   },
 })
