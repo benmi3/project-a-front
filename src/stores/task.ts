@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import {ref} from 'vue'
 import { defineStore } from 'pinia'
 import { invoke } from "@tauri-apps/api/tauri";
 
@@ -18,15 +18,23 @@ interface Task {
   cid: number,
 }
 
-export const mainTaskStore = defineStore('counter', () => {
+export const mainTaskStore = defineStore('task', () => {
   // -- state / ref()
-  const tasks:Task[] = ref([])
+  const tasks = ref<Task[]>([{
+    id: 0,
+    projectId: 0,
+    title: "Task",
+    done: false,
+    cid: 0,
+  },])
   // --- getters / computed
   //const doubleCount = computed(() => count.value * 2)
   // --- functions / actions
-  function getTasks(projectId) {
-    tasks.value = await invoke("get_task", { projectId: projectId });
+  async function getTasks(projectId: number) {
+    tasks.value = await invoke("list_tasks", {});
   }
   // returns an object with the properties and methods we want to expose.
   return { tasks, getTasks }
 })
+
+
