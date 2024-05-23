@@ -1,3 +1,10 @@
+pub mod user;
+pub mod auth;
+mod error;
+
+
+pub use self::error::{Error, Result};
+
 #[tauri::command]
 pub fn greet(name: &str) -> String {
     format!("Hello, {}!", name)

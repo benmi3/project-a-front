@@ -18,8 +18,11 @@ tauri-build = { version = "1.5.2", features = [] }
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 tauri = { version = "1.6.5", features = [] }
+reqwest = "0.12.4"
 
 lib-http-client = { path="libs/lib-http-client" }
+derive_more = "0.99.17"
+serde_with = "3.8.1"
 
 
 [features]

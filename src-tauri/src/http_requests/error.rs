@@ -1,5 +1,8 @@
+
 use derive_more::From;
-use crate::command;
+use lib_http_client;
+use crate::http_requests;
+
 
 pub type Result<T> = core::result::Result<T, Error>;
 
@@ -7,7 +10,7 @@ pub type Result<T> = core::result::Result<T, Error>;
 pub enum Error {
     // -- Modules
     #[from]
-    Commands(command::Error),
+    RequestIssues(lib_http_client::Error),
 }
 
 // region:    --- Error Boilerplate

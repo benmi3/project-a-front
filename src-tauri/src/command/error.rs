@@ -1,13 +1,14 @@
 use derive_more::From;
-use crate::command;
+use serde_with::serde_derive::Serialize;
+use crate::http_requests;
 
 pub type Result<T> = core::result::Result<T, Error>;
 
-#[derive(Debug, From)]
+#[derive(Debug, From, Serialize)]
 pub enum Error {
     // -- Modules
     #[from]
-    Commands(command::Error),
+    AuthProblems(http_requests::Error),
 }
 
 // region:    --- Error Boilerplate
