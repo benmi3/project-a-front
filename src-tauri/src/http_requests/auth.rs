@@ -8,7 +8,7 @@ use tauri::State;
 pub async fn login_request<'r>(
     username: &str,
     password: &str,
-    &hc: State<'r, &Client>,
+    hc: State<'r, &Client>,
 ) -> Result<bool> {
     let req_login = hc.do_post(
         "/api/login",

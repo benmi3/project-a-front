@@ -17,7 +17,7 @@ fn main() {
     let ctx = tauri::generate_context!();
     let hc = create_http_client();
     tauri::Builder::default()
-        .manage(&hc.clone())
+        .manage(hc)
         .invoke_handler(tauri::generate_handler![greet, task, backend_add, login])
         .run(ctx)
         .expect("error while running tauri application");
