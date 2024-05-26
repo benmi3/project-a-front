@@ -1,6 +1,5 @@
 use derive_more::From;
 use serde_with::serde_derive::Serialize;
-use crate::http_requests;
 
 pub type Result<T> = core::result::Result<T, Error>;
 
@@ -8,7 +7,7 @@ pub type Result<T> = core::result::Result<T, Error>;
 pub enum Error {
     // -- Modules
     #[from]
-    AuthProblems(http_requests::Error),
+    AuthProblems(crate::http_requests::Error),
 }
 
 // region:    --- Error Boilerplate

@@ -1,13 +1,16 @@
 use derive_more::From;
-use crate::command;
+use serde::Serialize;
+use serde_with::{serde_as, DisplayFromStr};
+
 
 pub type Result<T> = core::result::Result<T, Error>;
 
-#[derive(Debug, From)]
+#[serde_as]
+#[derive(Debug, From, Serialize)]
 pub enum Error {
     // -- Modules
     #[from]
-    Commands(command::Error),
+    HTTPClientIssues(#[serde_as(as = "DisplayFromStr")] lib_http_client::Error),
 }
 
 // region:    --- Error Boilerplate
