@@ -1,77 +1,148 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import Greet from "./components/Greet.vue";
 </script>
 
 <template>
-  <div class="bg-slate-800">
-  <header class="bg-slate-900 ring-slate-900/5 shadow-xl">
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <div class="container">
+    <h1>Welcome to Tauri!</h1>
 
-    <div class="text-white">
-      <HelloWorld msg="You did it!" />
-
-      <nav class="text-slate-100">
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+    <div class="row">
+      <a href="https://vitejs.dev" target="_blank">
+        <img src="/vite.svg" class="logo vite" alt="Vite logo" />
+      </a>
+      <a href="https://tauri.app" target="_blank">
+        <img src="/tauri.svg" class="logo tauri" alt="Tauri logo" />
+      </a>
+      <a href="https://vuejs.org/" target="_blank">
+        <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+      </a>
     </div>
-  </header>
-    <RouterView />
+
+    <p>Click on the Tauri, Vite, and Vue logos to learn more.</p>
+
+    <Greet />
   </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+.logo.vite:hover {
+  filter: drop-shadow(0 0 2em #747bff);
+}
+
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #249b73);
+}
+
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: #0f0f0f;
+  background-color: #f6f6f6;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.container {
+  margin: 0;
+  padding-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
 .logo {
-  display: block;
-  margin: 0 auto 2rem;
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: 0.75s;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
+.logo.tauri:hover {
+  filter: drop-shadow(0 0 2em #24c8db);
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+h1 {
   text-align: center;
-  margin-top: 2rem;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem
+input,
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  color: #0f0f0f;
+  background-color: #ffffff;
+  transition: border-color 0.25s;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
-nav a:first-of-type {
-  border: 0;
+button {
+  cursor: pointer;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+button:hover {
+  border-color: #396cd8;
+}
+button:active {
+  border-color: #396cd8;
+  background-color: #e8e8e8;
+}
+
+input,
+button {
+  outline: none;
+}
+
+#greet-input {
+  margin-right: 5px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #f6f6f6;
+    background-color: #2f2f2f;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
+  a:hover {
+    color: #24c8db;
   }
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  input,
+  button {
+    color: #ffffff;
+    background-color: #0f0f0f98;
   }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+  button:active {
+    background-color: #0f0f0f69;
   }
 }
+
 </style>
